@@ -1,0 +1,136 @@
+{% extends "layout.html" %}
+
+{% block main %}
+<style>
+
+    #post
+    {
+        text-align: right;
+        padding-left: 10%;
+        padding-right: 10%;
+    }
+    #feed
+    {
+        padding-left: 10%;
+        padding-right: 10%;
+        text-align: left;
+
+    }
+    textarea
+    {
+        width:100%;
+        padding:10px;
+        margin:5px;
+    }
+    #text
+    {
+        padding: 5px;
+        margin: 5px;
+    }
+    .row
+    {
+        padding:1px;
+        margin:1px;
+
+    }
+    .col
+    {
+        padding:1px;
+        margin:1px;
+
+    }
+
+    #user
+    {
+        font-family:Lucidatypewriter, monospace;
+        font-size: 20px;
+        padding-bottom:0px;
+        padding-top:7px;
+        margin-bottom:0px;
+        font-style: bold;
+    }
+    #status
+    {
+        padding:5px;
+        margin:5px;
+        padding-left: 10px;
+        font-family:"Lucida Sans Unicode", "Lucida Grande", sans-serif;
+        font-size: 30px;
+        word-break: break-all;
+    }
+    #pic
+    {
+      padding:7px;
+      margin:7px;
+      text-align:center;
+
+    }
+    #date
+    {
+      padding-top:0px;
+      margin-top:0px;
+      font-size:10px;
+      font-family:Arial, Helvetica, sans-serif;
+
+    }
+    #block
+    {
+      border-style:solid;
+      border-width: 0.025px;
+      border-color:grey;
+      border-left: none;
+      border-right: none;
+      margin-left:2px;
+      margin-right: 2px;
+      padding-left: 2px;
+      padding-right: 2px;
+      padding-top: 0px;
+      padding-bottom: 0px;
+      margin-bottom: 0px;
+      margin-top: 0px;
+    }
+
+
+
+</style>
+
+<div id="post">
+    <textarea autofocus form="text" name="status" rows="4" cols="60" placeholder="Say Something" required></textarea>
+    <form id ="text" action="/feed" method="post">
+    <div id="button">
+        <button type="submit" class="btn btn-outline-dark">POST</button>
+    </div>
+    </form>
+</div>
+
+
+<div id = "feed">
+  {% for a in data|reverse %}
+  <div class="col" id="block">
+    <div class="row">
+      <div  id="pic">
+        <img src="{{avatars.gravatar(a[3],size='40')}}" alt="">
+      </div>
+      <div class="col">
+        <div class="row" id ="user">
+            {{a[0]}}
+        </div>
+        <div class="row" id="date">
+          {% for b in range(0,10) %}
+          {{a[2][b]}}
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+    <div class ="row" id="status">
+      {{a[1]}}
+    </div>
+  </div>
+
+
+  {% endfor %}
+
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,6 @@
+flask
+flask-avatars
+passlib
+gunicorn
+Werkzeug
+Jinja2 

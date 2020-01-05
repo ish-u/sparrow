@@ -1,0 +1,136 @@
+{% extends "layout.html" %}
+
+{% block main %}
+<style>
+    #profile
+    {
+        padding: 5px;
+        margin: 5px;
+        float: left;
+        width: 30%;
+
+    }
+    #post
+    {
+        padding: 5px;
+        margin: 5px;
+        width:65%;
+        float: right;
+
+
+    }
+    #name
+    {
+        font-family:"Lucida Sans Unicode", "Lucida Grande", sans-serif;
+        font-size: 30px;
+        font-weight: 300;
+    }
+    #username,#age,#email
+    {
+        font-family:"Lucidatypewriter", monospace;
+        font-size: 15px;
+        padding: 1px;
+        margin: 1px;
+    }
+    #pic
+    {
+        padding: 3px;
+        margin: 2px;
+    }
+    #details
+    {
+        padding:1px;
+        margin: 2px;
+    }
+    #status
+    {
+        padding-top:10px;
+        margin-top: 5px;
+        font-family:"Trebuchet MS", "Helvetica", sans-serif;
+        font-size: 20px;
+    }
+    #user_post
+    {
+        font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+        font-size: 20px;
+
+    }
+    #block
+    {
+        border-bottom: solid;
+        border-top: solid;
+        border-width: thin;
+        padding: 1px;
+        margin: 1px;
+    }
+    #text
+    {
+        font-family: "Trebuchet MS", "Helvetica", sans-serif;
+        font-size: 35px;
+        padding: 5px;
+        margin: 5px;
+        word-break: break-all;
+    }
+    #date
+    {
+        font-family: "Trebuchet MS", "Helvetica", sans-serif;
+        font-size: 10px;
+    }
+    @media only screen and (max-width : 991px) {
+      #profile
+      {
+        float:none;
+        width:100%;
+        text-align:center;
+
+      }
+      #post
+      {
+        float:none;
+        width:100%;
+        padding-top:10px;
+        margin-top:10px;
+
+      }
+      #image
+      {
+        width:180px;
+      }
+    }
+
+
+</style>
+
+    <div id="profile">
+        <div id="pic">
+            <img id="image" src="{{avatars.gravatar(info[3],size='270')}}">
+        </div>
+        <div id="details">
+            <div id="name">{{info[7]}}</div>
+            <div id="username">{{info[0]}}</div>
+            <div id="age">Age - {{info[4]}} ({{info[5]}})</div>
+            <div id="email">E-mail - {{info[2]}}</div>
+        </div>
+        <div id="status">
+            STATUS : {{info[6]}}
+        </div>
+    </div>
+    <div id = "post">
+        {% for a in status|reverse %}
+        <div id="block">
+            <div style="padding-left: 5px; padding-right: 10px;padding-bottom: 5px;padding-top: 10px; float: left;">
+                <img src="{{avatars.gravatar(info[3],size='30')}}">
+            </div >
+            <div >
+                <div id="user_post">{{info[0]}}</div>
+                <div id="date">
+                  {% for b in range(0,10) %}
+                  {{a[2][b]}}
+                  {% endfor %}
+                </div>
+            </div>
+            <div id="text">{{a[1]}}</div>
+        </div>
+        {% endfor %}
+    </div>
+{% endblock %}

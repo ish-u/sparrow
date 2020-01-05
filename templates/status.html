@@ -1,0 +1,27 @@
+{% extends "layout.html" %}
+{% block main %}
+
+<style>
+    main
+    {
+        text-align: center;
+    }
+    form
+    {
+        padding-left: 10%;
+        margin-left: 10%;
+        padding-right: 10%;
+        margin-right: 10%;
+    }
+
+</style>
+<form  action="/edit" method="post">
+  <div class="form-group">
+      <input class="form-control" name="edit" placeholder="Change Status"maxlength="50" type="text">
+  </div>
+  <button class="btn btn-primary" type="submit"> Save Changes</button>
+</form>
+
+
+
+{% endblock %}

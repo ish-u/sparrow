@@ -1,0 +1,47 @@
+{% extends "layout.html" %}
+{% block main %}
+<style>
+  @media only screen and (max-width:570px) {
+    table tbody tr td:nth-child(3) {
+      display:none;
+    }
+    table thead tr td:nth-child(3)
+    {
+      display:none;
+    }
+  }
+
+</style>
+<form action="/people" method="post">
+<div class="input-group mb-3">
+  <input type="text" class="form-control" name="search" placeholder="Search Username" aria-label= "Search Username" aria-describedby="basic-addon2">
+  <div class="input-group-append">
+    <button class="btn btn-outline-secondary" type="submit">SEARCH</button>
+  </div>
+</div>
+</form>
+<table id = "table" class = "table">
+  <thead >
+    <tr>
+      <td></td>
+      <td>USERNAME</td>
+      <td>EMAIL</td>
+      <td></td>
+    </tr>
+  </thead>
+{% for a in data %}
+  <tbody>
+    <tr>
+      <td><img src="{{avatars.gravatar(a[3],size='40')}}" alt=""></td>
+      <td class="email">{{a[0]}}</td>
+      <td>{{a[2]}}</td>
+      <form  action="/user" method="post">
+      <td><button type="submit"  class="btn btn-outline-secondary" value = "{{a[0]}}" name="button">VIEW</button></td>
+      </form>
+    </tr>
+  </tbody>
+{% endfor %}
+</table>
+
+
+{% endblock %}
